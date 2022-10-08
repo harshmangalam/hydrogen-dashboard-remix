@@ -7,6 +7,11 @@
     "start": "cross-env NODE_ENV=production netlify dev"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^5.5.4",
+    "@mantine/hooks": "^5.5.4",
+    "@mantine/remix": "^5.5.4",
     "@netlify/functions": "^1.0.0",
     "@remix-run/netlify": "^1.7.2",
     "@remix-run/node": "^1.7.2",
