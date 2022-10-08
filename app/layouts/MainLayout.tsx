@@ -1,20 +1,10 @@
 import { AppShell, Header, Navbar } from "@mantine/core";
+import { ReactNode } from "react";
 import CustomNavbar from "./CustomNavbar";
 
-export default function MainLayout({ children }) {
+export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <AppShell
-      padding="md"
-      navbar={<CustomNavbar />}
-      styles={(theme) => ({
-        main: {
-          backgroundColor:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-        },
-      })}
-    >
+    <AppShell padding="md" navbar={<CustomNavbar />}>
       {children}
     </AppShell>
   );

@@ -15,7 +15,7 @@ export default function CustomNavbar() {
         </Center>
       </Navbar.Section>
       <Navbar.Section grow mt={50}>
-        <Stack justify="center" spacing={0}>
+        <Stack justify="center" spacing={"sm"}>
           {data.map((link, index) => (
             <NavbarLink
               icon={link.icon}
@@ -28,10 +28,7 @@ export default function CustomNavbar() {
         </Stack>
       </Navbar.Section>
       <Navbar.Section>
-        <Stack justify="center" spacing={0}>
-          <NavbarLink icon={IconSwitchHorizontal} label="Change account" />
-          <NavbarLink icon={IconLogout} label="Logout" />
-        </Stack>
+        <Stack justify="center" spacing={0}></Stack>
       </Navbar.Section>
     </Navbar>
   );

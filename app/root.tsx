@@ -33,7 +33,6 @@ export default function App() {
           <MainLayout>
             <Outlet />
           </MainLayout>
-
           <ScrollRestoration />
           <Scripts />
           <LiveReload />
