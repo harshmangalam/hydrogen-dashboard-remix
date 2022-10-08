@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 import { MantineProvider, createEmotionCache } from "@mantine/core";
 import { StylesPlaceholder } from "@mantine/remix";
-import { theme } from "./theme";
+import { theme } from "~/theme";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
