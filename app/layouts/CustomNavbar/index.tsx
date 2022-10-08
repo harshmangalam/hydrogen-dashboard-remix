@@ -20,6 +20,7 @@ export default function CustomNavbar() {
             <NavbarLink
               icon={link.icon}
               label={link.label}
+              href={link.href}
               key={link.label}
               active={index === active}
               onClick={() => setActive(index)}
