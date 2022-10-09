@@ -9,17 +9,10 @@ import {
   ScrollArea,
   useMantineTheme,
 } from "@mantine/core";
+import { json, LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { IconPencil, IconTrash } from "@tabler/icons";
-
-interface UsersTableProps {
-  data: {
-    avatar: string;
-    name: string;
-    job: string;
-    email: string;
-    phone: string;
-  }[];
-}
+import { ADMIN_ENDPOINT, ENDPOINT } from "~/constants";
 
 const jobColors: Record<string, string> = {
   engineer: "blue",
@@ -27,43 +20,88 @@ const jobColors: Record<string, string> = {
   designer: "pink",
 };
 
+const gender: Record<string, string> = {
+  MALE: "blue",
+  FEMALE: "cyan",
+  OTHER: "pink",
+};
+
+const status: Record<string, string> = {
+  ACTIVE: "green",
+  IDLE: "yellow",
+  LOGOUT: "red",
+};
+
+const role: Record<string, string> = {
+  ADMIN: "blue",
+  USER: "cyan",
+};
+
+export const loader: LoaderFunction = async () => {
+  try {
+    const response = await fetch(`${ADMIN_ENDPOINT}/users`);
+    const jsonData = await response.json();
+    return json({ users: jsonData.data.users });
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default function Users() {
+  const loaderData = useLoaderData();
+  console.log(loaderData);
   const theme = useMantineTheme();
-  const rows = [...new Array(100)].map((item) => (
-    <tr>
+  const rows = loaderData?.users?.map((user) => (
+    <tr key={user.id}>
       <td>
         <Group spacing="sm">
-          <Avatar
-            size={30}
-            src="https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80"
-            radius={30}
-          />
+          <Avatar size={30} src={user.profileImage} radius={30} />
           <Text size="sm" weight={500}>
-            Harsh Mangalam
+            {user.firstName} {user.lastName}
           </Text>
         </Group>
       </td>
 
       <td>
-        <Badge
-          color={jobColors["engineer"]}
-          variant={theme.colorScheme === "dark" ? "light" : "outline"}
-        ></Badge>
+        <Text size="sm" weight={500}>
+          harshmangalam@gmail.com
+        </Text>
       </td>
       <td>
-        <Anchor<"a">
-          size="sm"
-          href="#"
-          onClick={(event) => event.preventDefault()}
+        <Badge
+          color={gender[user.gender]}
+          variant={theme.colorScheme === "dark" ? "light" : "outline"}
         >
-          harshmangalam@gmail.com
-        </Anchor>
+          {user.gender}
+        </Badge>
+      </td>
+      <td>
+        <Badge
+          color={status[user.staus]}
+          variant={theme.colorScheme === "dark" ? "light" : "outline"}
+        >
+          {user.status}
+        </Badge>
+      </td>
+      <td>
+        <Badge
+          color={role[user.role]}
+          variant={theme.colorScheme === "dark" ? "light" : "outline"}
+        >
+          {user.role}
+        </Badge>
       </td>
       <td>
         <Text size="sm" color="dimmed">
-          8797604475
+          {new Date(user.lastSeen).toDateString()}
         </Text>
       </td>
+      <td>
+        <Text size="sm" color="dimmed">
+          {new Date(user.createdAt).toDateString()}
+        </Text>
+      </td>
+
       <td>
         <Group spacing={0} position="right">
           <ActionIcon>
@@ -82,10 +120,14 @@ export default function Users() {
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm">
         <thead>
           <tr>
-            <th>Employee</th>
-            <th>Job title</th>
+            <th>User</th>
             <th>Email</th>
-            <th>Phone</th>
+            <th>Gender</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th>Last Seen</th>
+            <th>Joined At</th>
+
             <th />
           </tr>
         </thead>
