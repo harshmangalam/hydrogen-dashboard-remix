@@ -25,7 +25,7 @@ export default function NavbarLink({
           isActive ? cx(classes.link, classes.active) : classes.link
         }
       >
-        <Icon stroke={1.5} />
+        <Icon size={24} />
       </NavLink>
     </Tooltip>
   );
