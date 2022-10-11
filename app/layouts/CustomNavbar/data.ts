@@ -17,5 +17,5 @@ export const data = [
     label: "Notifications",
     href: "/notifications",
   },
-  { icon: RiDeviceLine, label: "Devices", href: "/group-posts" },
+  { icon: RiDeviceLine, label: "Devices", href: "/devices" },
 ];
