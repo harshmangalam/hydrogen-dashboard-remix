@@ -14,3 +14,7 @@ Update  `.env`
 ```
 VITE_ENDPOINT=https://hydrogen-harsh.herokuapp.com/api
 ```
+
+
+Visit live url
+https://hydrogen-dashboard.netlify.app/
