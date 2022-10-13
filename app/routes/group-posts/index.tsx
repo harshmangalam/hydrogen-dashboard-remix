@@ -14,6 +14,10 @@ export const loader: LoaderFunction = async () => {
 
 export default function GroupPosts() {
   const groupPosts = useLoaderData();
-  console.log({groupPosts});
-  return <div>Group Posts</div>;
+  const rows = groupPosts?.map((groupPost: PostInterface) => (
+    <tr key={groupPost.id}>
+    </tr>
+  ));
+
+  return <div>{JSON.stringify(rows)}</div>;
 }
