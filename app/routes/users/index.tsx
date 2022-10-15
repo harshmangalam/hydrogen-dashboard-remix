@@ -64,7 +64,7 @@ export default function Users() {
 
       <td>
         <Text size="sm" weight={500}>
-          harshmangalam@gmail.com
+          {user.email}
         </Text>
       </td>
       <td>
