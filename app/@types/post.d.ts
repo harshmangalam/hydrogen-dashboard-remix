@@ -11,6 +11,12 @@ interface Count {
   specificAudienceFriends: number;
   taggedFriends: number;
 }
+
+interface Group {
+  id: string;
+  name: string;
+}
+
 interface PostInterface {
   id: string;
   content: string;
@@ -24,5 +30,19 @@ interface PostInterface {
   author: Author;
   specificAudienceFriends: any[];
   taggedFriends: any[];
+  _count: Count;
+}
+
+interface GroupPostInterface {
+  id: string;
+  content: string;
+  authorId: string;
+  image: string;
+  isPublished: boolean;
+  groupId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  author: Author;
+  group: Group;
   _count: Count;
 }
